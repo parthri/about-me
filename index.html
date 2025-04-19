@@ -1,217 +1,384 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Ladylen's Birthday</title>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to top, #1a1a2e, #0f0f1a);
-      color: #f8bbd0;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #5b17c3, #f1228a);
       margin: 0;
       padding: 0;
-      overflow: hidden;
+      overflow-x: hidden;
+    }
+
+    .birthday-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      margin: 40px auto;
+      text-align: center;
+      max-width: 600px;
       position: relative;
+      border: 3px solid transparent;
+      background-image: linear-gradient(to right, #ff8a80, #da66a4, #b843c3, #9621e2);
+      background-clip: border-box;
+      mask: linear-gradient(#fff 0%, #fff 100%);
+      mask-composite: exclude;
+      animation: rainbow-border 5s infinite linear;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
-    .stars {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      z-index: 0;
-      overflow: hidden;
+
+    @keyframes rainbow-border {
+      to { background-position: 400% 0; }
     }
+
     .star {
       position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      animation: twinkle 2s infinite ease-in-out;
+      color: gold;
+      font-size: 1.8em;
+      animation: twinkle 2s infinite alternate;
+      text-shadow: 1px 1px 2px #ffca28;
     }
+
+    .top-left { top: 15px; left: 15px; }
+    .top-right { top: 15px; right: 15px; }
+    .bottom-left { bottom: 15px; left: 15px; }
+    .bottom-right { bottom: 15px; right: 15px; }
+
     @keyframes twinkle {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 1; }
+      from { opacity: 1; transform: scale(1) rotate(0deg); }
+      to { opacity: 0.8; transform: scale(1.2) rotate(15deg); }
     }
-    .container {
-      background: rgba(30, 30, 50, 0.9);
-      padding: 30px 40px;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(255, 182, 193, 0.4);
-      max-width: 500px;
-      margin: 100px auto;
-      position: relative;
-      z-index: 1;
+
+    .birthday-title {
+      color: #ff4081;
+      font-size: 3em;
+      margin-bottom: 15px;
     }
-    h2 {
-      text-align: center;
-      color: #ff69b4;
-      font-family: 'Pacifico', cursive;
-    }
-    p {
-      text-align: center;
-      font-weight: 500;
-      color: #ffc1e3;
-    }
-    label {
-      display: block;
-      margin-top: 20px;
+
+    .name {
+      font-size: 2.2em;
+      color: #3f51b5;
+      margin-bottom: 20px;
       font-weight: bold;
-      color: #ffc1e3;
     }
-    textarea {
+
+    .wish {
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      font-style: italic;
+    }
+
+    .image-container {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 25px;
+      border: 8px solid #ca1051;
+      box-shadow: 0 4px 8px rgba(8, 0, 255, 0.15);
+    }
+
+    .profile-image {
       width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ff99cc;
-      border-radius: 8px;
-      background-color: #2a2a3a;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .profile-image:hover {
+      transform: scale(1.05);
+    }
+
+    .gift {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background-color: #ffca28;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5em;
       color: white;
-      resize: vertical;
-      font-family: 'Poppins', sans-serif;
     }
-    button {
-      margin-top: 25px;
+
+    .gift::before, .gift::after {
+      content: '';
+      position: absolute;
+      background-color: #f57f17;
+    }
+
+    .gift::before {
       width: 100%;
-      padding: 12px;
-      background-color: #ff69b4;
+      height: 10px;
+      top: 20px;
+    }
+
+    .gift::after {
+      width: 10px;
+      height: 100%;
+      left: 25px;
+    }
+
+    .gift-left {
+      bottom: 20px;
+      left: 20px;
+      animation: slideInLeft 1s ease-out;
+    }
+
+    .gift-right {
+      bottom: 20px;
+      right: 20px;
+      animation: slideInRight 1s ease-out;
+    }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-150%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(150%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .balloon {
+      position: absolute;
+      width: 70px;
+      height: 90px;
+      border-radius: 50%;
+      background-color: #90caf9;
+      animation: float 4s infinite alternate;
+    }
+
+    .balloon::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 40px;
+      background-color: #777;
+    }
+
+    .balloon-left-top {
+      top: 10px;
+      left: 10px;
+      background-color: #aed581;
+      animation-delay: 0.7s;
+    }
+
+    .balloon-right-top {
+      top: 20px;
+      right: 10px;
+      background-color: #fdd835;
+      animation-delay: 1.2s;
+    }
+
+    .balloon-bottom-left {
+      bottom: 50px;
+      left: 30px;
+      background-color: #ffab91;
+      animation-delay: 1.7s;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-30px) rotate(5deg); }
+    }
+
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .tulip-field {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px auto;
+      max-width: 90%;
+    }
+
+    .tulip {
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+      animation: sway 3s infinite ease-in-out;
+    }
+
+    .tulip:hover {
+      transform: scale(1.2);
+      text-shadow: 0 0 10px #ff4081;
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    .tulip-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: #fff0f6;
+      border: 2px solid #ff4081;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      z-index: 200;
+      transition: transform 0.4s ease;
+    }
+
+    .tulip-box.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .tulip-box button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ff4081;
       color: white;
       border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    button:hover {
-      background-color: #ff1493;
-    }
-    .thank-you {
-      text-align: center;
-      font-size: 18px;
-      color: #90ee90;
-      margin-top: 20px;
-    }
-    .balloon.heart {
-      position: absolute;
-      bottom: -100px;
-      width: 60px;
-      height: 60px;
-      background-color: #ff69b4;
-      transform: rotate(-45deg);
-      animation: floatUp 10s linear infinite;
-      opacity: 0.8;
-    }
-    .balloon.heart::before,
-    .balloon.heart::after {
-      content: "";
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      background-color: #ff69b4;
-      border-radius: 50%;
-    }
-    .balloon.heart::before {
-      top: -30px;
-      left: 0;
-    }
-    .balloon.heart::after {
-      left: 30px;
-      top: 0;
-    }
-    .balloon.heart::after,
-    .balloon.heart::before {
-      transform: rotate(45deg);
-    }
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) rotate(-45deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-120vh) rotate(-45deg);
-        opacity: 0;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="stars" id="stars"></div>
-  <div class="balloon heart" style="left: 10%; animation-delay: 0s;"></div>
-  <div class="balloon heart" style="left: 30%; animation-delay: 2s;"></div>
-  <div class="balloon heart" style="left: 50%; animation-delay: 4s;"></div>
-  <div class="balloon heart" style="left: 70%; animation-delay: 6s;"></div>
-  <div class="balloon heart" style="left: 90%; animation-delay: 1s;"></div>
 
-  <div class="container">
-    <h2>Happy Birthday Ladylen!</h2>
-    <p>Hi, itâ€™s Ladylenâ€™s Birthday! Help make her day special by answering these 3 fun questions:</p>
-    <form id="birthdayForm">
-      <label>1. How do you define her?</label>
-      <textarea id="q1" rows="3" required></textarea>
+  <div class="birthday-card">
+    <div class="star top-left">â­</div>
+    <div class="star top-right">â­</div>
+    <div class="star bottom-left">â­</div>
+    <div class="star bottom-right">â­</div>
 
-      <label>2. If she is one of the spices, what will she be?</label>
-      <textarea id="q2" rows="3" required></textarea>
+    <h2 class="birthday-title">HAPPY BIRTHDAY</h2>
+    <h1 class="name" id="birthdayName">Ladylen ðŸ’–</h1>
+    <p class="wish">Wishing you a day filled with happiness and a year filled with joy.</p>
 
-      <label>3. Message to her?</label>
-      <textarea id="q3" rows="3" required></textarea>
+    <div class="image-container">
+      <img src="https://github.com/parthri/about-me/blob/main/WhatsApp%20Image%202025-04-09%20at%2001.27.02_4fabaf96.jpg?raw=true" alt="Birthday Girl" class="profile-image"/>
+    </div>
 
-      <button type="submit">Submit</button>
-    </form>
-    <div class="thank-you" id="thankYou" style="display:none;">Thank you for making Ladylen's day special!</div>
+    <div class="gift gift-left">ðŸŽ</div>
+    <div class="gift gift-right">ðŸŽ</div>
+
+    <div class="balloon balloon-left-top"></div>
+    <div class="balloon balloon-right-top"></div>
+    <div class="balloon balloon-bottom-left"></div>
   </div>
 
+  <div class="tulip-field">
+    <!-- Generate 27 tulips -->
+    <script>
+      for (let i = 1; i <= 27; i++) {
+        document.write(`<div class="tulip" data-color="Lavender ${i}" data-word="Graceful ${i}" data-message="You're amazing! ðŸŒ· #${i}">ðŸŒ·</div>`);
+      }
+    </script>
+  </div>
+
+  <div class="tulip-box" id="tulipBox">
+    <h3 id="tulipColor"></h3>
+    <p id="tulipWord"></p>
+    <p id="tulipMessage"></p>
+    <button onclick="closeTulipBox()">Close</button>
+  </div>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <audio autoplay loop>
+    <source src="your-music-file.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
   <script>
-    // Generate random stars
-    const starContainer = document.getElementById("stars");
-    for (let i = 0; i < 100; i++) {
-      const star = document.createElement("div");
-      star.classList.add("star");
-      star.style.left = Math.random() * 100 + "%";
-      star.style.top = Math.random() * 100 + "%";
-      star.style.animationDuration = (Math.random() * 2 + 1) + "s";
-      starContainer.appendChild(star);
+    const ctx = document.getElementById('confetti-canvas').getContext('2d');
+    const confettiCanvas = document.getElementById('confetti-canvas');
+    confettiCanvas.width = window.innerWidth;
+    confettiCanvas.height = window.innerHeight;
+
+    const confettiParticles = [];
+    const numberOfConfetti = 150;
+    const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722'];
+
+    function createConfetti() {
+      for (let i = 0; i < numberOfConfetti; i++) {
+        confettiParticles.push({
+          x: Math.random() * confettiCanvas.width,
+          y: Math.random() * confettiCanvas.height,
+          radius: Math.random() * 5 + 2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          velocity: {
+            x: (Math.random() - 0.5) * 5,
+            y: Math.random() * 10 + 5
+          },
+          alpha: 1,
+          friction: 0.99,
+          gravity: 0.1
+        });
+      }
     }
 
-    // Firebase config (replace with your actual config)
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
+    function drawConfetti() {
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confettiParticles.forEach((particle, index) => {
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = particle.color;
+        ctx.globalAlpha = particle.alpha;
+        ctx.fill();
+        updateConfetti(particle, index);
+      });
+    }
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    const form = document.getElementById("birthdayForm");
-    const thankYou = document.getElementById("thankYou");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const answer1 = document.getElementById("q1").value.trim();
-      const answer2 = document.getElementById("q2").value.trim();
-      const answer3 = document.getElementById("q3").value.trim();
-
-      if (answer1 && answer2 && answer3) {
-        await db.collection("ladylen_answers").add({
-          q1: answer1,
-          q2: answer2,
-          q3: answer3,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-
-        form.style.display = "none";
-        thankYou.style.display = "block";
+    function updateConfetti(particle, index) {
+      particle.x += particle.velocity.x;
+      particle.y += particle.velocity.y;
+      particle.velocity.y += particle.gravity;
+      particle.velocity.x *= particle.friction;
+      particle.velocity.y *= particle.friction;
+      particle.alpha -= 0.01;
+      if (particle.y > confettiCanvas.height || particle.alpha <= 0) {
+        confettiParticles.splice(index, 1);
       }
+    }
+
+    function animateConfetti() {
+      requestAnimationFrame(animateConfetti);
+      drawConfetti();
+    }
+
+    createConfetti();
+    animateConfetti();
+
+    document.querySelectorAll('.tulip').forEach(tulip => {
+      tulip.addEventListener('click', () => {
+        document.getElementById('tulipColor').innerText = `ðŸŒ¸ Tulip Color: ${tulip.dataset.color}`;
+        document.getElementById('tulipWord').innerText = `âœ¨ Describes Her: ${tulip.dataset.word}`;
+        document.getElementById('tulipMessage').innerText = `ðŸ’Œ Message: ${tulip.dataset.message}`;
+        document.getElementById('tulipBox').classList.add('show');
+      });
     });
+
+    function closeTulipBox() {
+      document.getElementById('tulipBox').classList.remove('show');
+    }
   </script>
 </body>
 </html>
