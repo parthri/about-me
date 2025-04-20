@@ -263,21 +263,21 @@
 <body>
 
   <div class="birthday-card">
-    <div class="star top-left">â­</div>
-    <div class="star top-right">â­</div>
-    <div class="star bottom-left">â­</div>
-    <div class="star bottom-right">â­</div>
+    <div class="star top-left">⭐</div>
+    <div class="star top-right">⭐</div>
+    <div class="star bottom-left">⭐</div>
+    <div class="star bottom-right">⭐</div>
 
     <h2 class="birthday-title">HAPPY BIRTHDAY</h2>
-    <h1 class="name" id="birthdayName">Ladylen ðŸ’–</h1>
+    <h1 class="name" id="birthdayName">To Someone Special 💖</h1>
     <p class="wish">Wishing you a day filled with happiness and a year filled with joy.</p>
 
     <div class="image-container">
       <img src="https://github.com/parthri/about-me/blob/main/WhatsApp%20Image%202025-04-09%20at%2001.27.02_4fabaf96.jpg?raw=true" alt="Birthday Girl" class="profile-image"/>
     </div>
 
-    <div class="gift gift-left">ðŸŽ</div>
-    <div class="gift gift-right">ðŸŽ</div>
+    <div class="gift gift-left">🎁</div>
+    <div class="gift gift-right">🎁</div>
 
     <div class="balloon balloon-left-top"></div>
     <div class="balloon balloon-right-top"></div>
@@ -288,7 +288,7 @@
     <!-- Generate 27 tulips -->
     <script>
       for (let i = 1; i <= 27; i++) {
-        document.write(`<div class="tulip" data-color="Lavender ${i}" data-word="Graceful ${i}" data-message="You're amazing! ðŸŒ· #${i}">ðŸŒ·</div>`);
+        document.write(`<div class="tulip" data-color="Lavender ${i}" data-word="Graceful ${i}" data-message="You're amazing! 🌷 #${i}">🌷</div>`);
       }
     </script>
   </div>
@@ -369,9 +369,9 @@
 
     document.querySelectorAll('.tulip').forEach(tulip => {
       tulip.addEventListener('click', () => {
-        document.getElementById('tulipColor').innerText = `ðŸŒ¸ Tulip Color: ${tulip.dataset.color}`;
-        document.getElementById('tulipWord').innerText = `âœ¨ Describes Her: ${tulip.dataset.word}`;
-        document.getElementById('tulipMessage').innerText = `ðŸ’Œ Message: ${tulip.dataset.message}`;
+        document.getElementById('tulipColor').innerText = `🌸 Tulip Color: ${tulip.dataset.color}`;
+        document.getElementById('tulipWord').innerText = `✨ Describes Her: ${tulip.dataset.word}`;
+        document.getElementById('tulipMessage').innerText = `💌 Message: ${tulip.dataset.message}`;
         document.getElementById('tulipBox').classList.add('show');
       });
     });
