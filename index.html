@@ -9,26 +9,59 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
     body {
-      font-family: 'Nunito', sans-serif;
-      background: linear-gradient(135deg, #5b17c3, #f1228a);
+      font-family: Arial, Helvetica, sans-serif, sans-serif;
+      background: linear-gradient(135deg, #02AAB0,rgb(10, 8, 28));
       margin: 0;
       padding: 0;
       overflow-x: hidden;
     }
+    .floating-balloon {
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  background: radial-gradient(circle at 30% 30%, #7800d3, #e91e63 60%, #f3189b);
+  border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%; /* Proper balloon shape */
+  box-shadow: inset -5px -7px 10px rgba(0, 0, 0, 0.1);
+  animation: floatUpDown 6s ease-in-out infinite;
+  z-index: 50;
+}
+
+.floating-balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -70px;
+  left: 50%;
+  width: 40px;
+  height: 70px;
+  transform: translateX(-50%);
+  background-image: url("data:image/svg+xml;utf8,<svg width='40' height='70' xmlns='http://www.w3.org/2000/svg'><path d='M20,0 Q28,15 12,25 Q26,35 14,45 Q24,55 20,70' stroke='%23555' stroke-width='2' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+}
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-100px);
+  }
+  70% {
+    transform:translateY(-222px);
+  }
+}
 
     .birthday-card {
-      background: white;
+      background: #1e1a28;
       border-radius: 20px;
       padding: 40px;
       margin: 40px auto;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
       max-width: 600px;
       position: relative;
-      border: 3px solid transparent;
-      background-image: linear-gradient(to right, #ff8a80, #da66a4, #b843c3, #9621e2);
+      background-image: linear-gradient(to right, #23082D);
       background-clip: border-box;
-      mask: linear-gradient(#fff 0%, #fff 100%);
-      mask-composite: exclude;
       animation: rainbow-border 5s infinite linear;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
@@ -56,23 +89,26 @@
     }
 
     .birthday-title {
-      color: #ff4081;
+      color: #0DF5E3;
       font-size: 3em;
       margin-bottom: 15px;
     }
 
     .name {
       font-size: 2.2em;
-      color: #3f51b5;
+      color: #b30df5;
       margin-bottom: 20px;
       font-weight: bold;
+      font-family: Georgia, 'Times New Roman', Times, serif;
     }
 
     .wish {
-      color: #555;
+      color: #b70d6e;
       line-height: 1.7;
       margin-bottom: 25px;
-      font-style: italic;
+      font-style:normal;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 20px;
     }
 
     .image-container {
@@ -81,7 +117,7 @@
       border-radius: 50%;
       overflow: hidden;
       margin: 0 auto 25px;
-      border: 8px solid #ca1051;
+      border: 4px solid #08cbe5;
       box-shadow: 0 4px 8px rgba(8, 0, 255, 0.15);
     }
 
@@ -94,115 +130,6 @@
 
     .profile-image:hover {
       transform: scale(1.05);
-    }
-
-    .gift {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      background-color: #ffca28;
-      border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.5em;
-      color: white;
-    }
-
-    .gift::before, .gift::after {
-      content: '';
-      position: absolute;
-      background-color: #f57f17;
-    }
-
-    .gift::before {
-      width: 100%;
-      height: 10px;
-      top: 20px;
-    }
-
-    .gift::after {
-      width: 10px;
-      height: 100%;
-      left: 25px;
-    }
-
-    .gift-left {
-      bottom: 20px;
-      left: 20px;
-      animation: slideInLeft 1s ease-out;
-    }
-
-    .gift-right {
-      bottom: 20px;
-      right: 20px;
-      animation: slideInRight 1s ease-out;
-    }
-
-    @keyframes slideInLeft {
-      from { transform: translateX(-150%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    @keyframes slideInRight {
-      from { transform: translateX(150%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    .balloon {
-      position: absolute;
-      width: 70px;
-      height: 90px;
-      border-radius: 50%;
-      background-color: #90caf9;
-      animation: float 4s infinite alternate;
-    }
-
-    .balloon::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: 40px;
-      background-color: #777;
-    }
-
-    .balloon-left-top {
-      top: 10px;
-      left: 10px;
-      background-color: #aed581;
-      animation-delay: 0.7s;
-    }
-
-    .balloon-right-top {
-      top: 20px;
-      right: 10px;
-      background-color: #fdd835;
-      animation-delay: 1.2s;
-    }
-
-    .balloon-bottom-left {
-      bottom: 50px;
-      left: 30px;
-      background-color: #ffab91;
-      animation-delay: 1.7s;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); }
-      100% { transform: translateY(-30px) rotate(5deg); }
-    }
-
-    #confetti-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 100;
     }
 
     .tulip-field {
@@ -258,6 +185,14 @@
       border-radius: 10px;
       cursor: pointer;
     }
+
+    .author {
+      text-align: right;
+      font-style: italic;
+      margin-top: 50px;
+      color: #6a1b9a;
+    }
+    
   </style>
 </head>
 <body>
@@ -269,111 +204,84 @@
     <div class="star bottom-right">⭐</div>
 
     <h2 class="birthday-title">HAPPY BIRTHDAY</h2>
-    <h1 class="name" id="birthdayName">To Someone Special 💖</h1>
+    <h1 class="name">Ladylen💖</h1>
     <p class="wish">Wishing you a day filled with happiness and a year filled with joy.</p>
 
     <div class="image-container">
       <img src="https://github.com/parthri/about-me/blob/main/WhatsApp%20Image%202025-04-09%20at%2001.27.02_4fabaf96.jpg?raw=true" alt="Birthday Girl" class="profile-image"/>
+      <div id="balloon-container">
+        <!-- Floating balloons -->
+        <div class="floating-balloon" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="floating-balloon" style="left: 30%; animation-delay: 1s;"></div>
+        <div class="floating-balloon" style="left: 50%; animation-delay: 2s;"></div>
+        <div class="floating-balloon" style="left: 70%; animation-delay: 3s;"></div>
+        <div class="floating-balloon" style="left: 90%; animation-delay: 4s;"></div>
+      </div>
     </div>
-
-    <div class="gift gift-left">🎁</div>
-    <div class="gift gift-right">🎁</div>
-
-    <div class="balloon balloon-left-top"></div>
-    <div class="balloon balloon-right-top"></div>
-    <div class="balloon balloon-bottom-left"></div>
   </div>
 
-  <div class="tulip-field">
-    <!-- Generate 27 tulips -->
-    <script>
-      for (let i = 1; i <= 27; i++) {
-        document.write(`<div class="tulip" data-color="Lavender ${i}" data-word="Graceful ${i}" data-message="You're amazing! 🌷 #${i}">🌷</div>`);
-      }
-    </script>
-  </div>
+  <div class="tulip-field" id="tulipField"></div>
 
   <div class="tulip-box" id="tulipBox">
     <h3 id="tulipColor"></h3>
     <p id="tulipWord"></p>
     <p id="tulipMessage"></p>
+    <div class="author" id="tulipAuthor"></div>
     <button onclick="closeTulipBox()">Close</button>
   </div>
-
-  <canvas id="confetti-canvas"></canvas>
-
-  <audio autoplay loop>
-    <source src="your-music-file.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
-
   <script>
-    const ctx = document.getElementById('confetti-canvas').getContext('2d');
-    const confettiCanvas = document.getElementById('confetti-canvas');
-    confettiCanvas.width = window.innerWidth;
-    confettiCanvas.height = window.innerHeight;
+    const tulips = [
+      { color: "Cheery", word: "Magical", message: "Every move you make is elegance. You're the sunshine in cloudy days🦋.", author: "- Parth" },
+      { color: "Purple(Velvet)", word: "On-Fleek", message: "No Words can describe how crazy you are.Stay like that.", author: "- Christian" },
+      { color: "Purple", word: "Mesmerizing", message: "Wishing you a day as beautiful,graceful and unforgatable as you are.Happy Birthday Lady!!", author: "- Shree" },
+      { color: "Yellow", word: "Hard Working", message: "Stay Preety, Humble and more patience.Always be healthy and god bless you always.", author: "- Christine" },
+      { color: "Red", word: "String,Ambitious,Sweet,Calm and Smiling", message: "Happy Wonderful Birthday..!", author: "- Parmeet" },
+      { color: "Purple", word: "Empowering", message: "Wishing you endless joy and laughter - HBDTU.", author: "- Vipal" },
+      { color: "Blue", word: "Ambitious, Charming", message: "Happy Birthday Ma'am Enjoy your Day!!.", author: "- Joseph" },
+      { color: "Black", word: "LADY", message: "Get Well Soon.", author: "- Garry" },
+      { color: "Red/Pink", word: "Simplest", message: "Many many happy returns of the day.", author: "- Krutarth" },
+      { color: "Purple", word: "Majestic beauty", message: "Wishing yoy a day filled with joy and happiness and a year ahead that's even better than last year. Happy Birthday of the unstoppable aging. May you live long as you want to.", author: "- Tanjed" },
+      { color: "Deep Purple", word: "Elegant", message: "Too many words to describe your character the actual first word I thought was 'Maganda but choosed a better one! lol Happy Birthday!!'.", author: "- Pot" },
+      { color: "Purple", word: "Kind", message: "Happy Birthday Lady! wishing you a day filled with joy and laughter,and a year ahead filled with Happiness and Success!", author: "- Halima" },
+      { color: "Pink/Red", word: "Kind,Loyal,Funny", message: "Happy Birthday! Wishing you a wonderful day filled with happiness and a year of Success and good health!", author: "- Sydney" },
+      { color: "Red", word: "Elegance", message: "Forget the part, look forward to the future, For the best things are yet to come. Happy Birthday!!", author: "- Gaurav" },
+      { color: "Yellow", word: "Charismatic", message: "Happy Birthday Girl wish you all the Wealth and Happiness.", author: "- Ketav" },
+      { color: "Pink", word: "Smart,Intelligent", message: "Happy Birthday lady, enjoy yourday.May you achieve all your goals and stay happy.", author: "- Arshdeep" },
+      { color: "Purple", word: "Friendly, Supportive, Compassionate, Affectionate", message: "Wishing you a very Happy Birthday Ma'am! Thanks for always being so helpful. Stay Fabulous.", author: "- Mansi" },
+      { color: "Blue", word: "Unicorn :P", message: "Happy Birthday!!! Hope you have a wonderful day.", author: "- Ryan" },
+      { color: "Pink", word: "Sexy", message: "Happy Birthday Ladylen. I wish you good health and happiness hope you will get married Soon LOL.", author: "- Jojo" },
+      { color: "Pink", word: "Supportive", message: "Happy Birthday and hope you achieve all your dreams and be supportive as always as you are.", author: "- Abhishek" },
+      { color: "Yellow", word: "Beautiful", message: "Wish you very Happy Birthday lady Lots of Love.", author: "- Mayur" },
+      { color: "Dutch Apeldootn", word: "Bet Winner", message: "Keep Smiling, Be happy and i will soon win the online order bet!!.", author: "- Rushil" },
+      { color: "Yellow", word: "Classy, Beautiful Heart", message: "Enjoy your very special day.", author: "- Roger" },
+      { color: "Pink", word: "Hot", message: "May this year bring you happiness and all your heart desires! Happy Birthday Bakla", author: "- Christy" },
+      { color: "Orange/Yellow", word: "Supportive", message: "May your day be filled with Joy Laughter and everything that makes you happy.", author: "- Betty" },
+      { color: "Apple Red", word: "Energetic and Funny", message: "Happy Birthday and I  Hope you can have a lot of Funny and Good Memories!!", author: "- Christopher" },
+      { color: "Red", word: "aesthetic", message: "Maligayang kaarawan!!.", author: "- Sanket" },
+      { color: "Pastel Peach", word: "Brave and Strong Lady", message: "Cheers to Another year! Wishing you all the best things in Life!! Your Birthday is a Reminder of how special and amazing you are.Have fun Enjoy and Celebrate!! Happy Happy Birthday Lady!!", author: "- Grace" },
+      { color: "Pink", word: "Compassionate", message: "Happy Birthday to an amazing manager. Hope your birthday is as outstanding as your leadership. Wishing you a wonderful birthday and a year full of achievements. - Kurat pa more", author: "- Charles" },
+      { color: "Purple", word: "Confidient and Emphatic", message: "Happy Birthday to the Boss Lady! Wishing you the best of everything in life Cheers to the backbone of our Department", author: "- Anant" },
 
-    const confettiParticles = [];
-    const numberOfConfetti = 150;
-    const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722'];
 
-    function createConfetti() {
-      for (let i = 0; i < numberOfConfetti; i++) {
-        confettiParticles.push({
-          x: Math.random() * confettiCanvas.width,
-          y: Math.random() * confettiCanvas.height,
-          radius: Math.random() * 5 + 2,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          velocity: {
-            x: (Math.random() - 0.5) * 5,
-            y: Math.random() * 10 + 5
-          },
-          alpha: 1,
-          friction: 0.99,
-          gravity: 0.1
-        });
-      }
-    }
+    ];
 
-    function drawConfetti() {
-      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-      confettiParticles.forEach((particle, index) => {
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = particle.color;
-        ctx.globalAlpha = particle.alpha;
-        ctx.fill();
-        updateConfetti(particle, index);
+    const tulipField = document.getElementById("tulipField");
+    tulips.forEach((tulip, index) => {
+      const div = document.createElement("div");
+      div.classList.add("tulip");
+      div.innerText = "🌷";
+      div.dataset.color = tulip.color;
+      div.dataset.word = tulip.word;
+      div.dataset.message = tulip.message;
+      div.dataset.author = tulip.author;
+      div.addEventListener("click", () => {
+        document.getElementById("tulipColor").innerText = `🌸 Tulip Color: ${tulip.color}`;
+        document.getElementById("tulipWord").innerText = `✨ Describes Her: ${tulip.word}`;
+        document.getElementById("tulipMessage").innerText = `💌 Message: ${tulip.message}`;
+        document.getElementById("tulipAuthor").innerText = tulip.author;
+        document.getElementById("tulipBox").classList.add("show");
       });
-    }
-
-    function updateConfetti(particle, index) {
-      particle.x += particle.velocity.x;
-      particle.y += particle.velocity.y;
-      particle.velocity.y += particle.gravity;
-      particle.velocity.x *= particle.friction;
-      particle.velocity.y *= particle.friction;
-      particle.alpha -= 0.01;
-      if (particle.y > confettiCanvas.height || particle.alpha <= 0) {
-        confettiParticles.splice(index, 1);
-      }
-    }
-
-    function animateConfetti() {
-      requestAnimationFrame(animateConfetti);
-      drawConfetti();
-    }
-
-    createConfetti();
-    animateConfetti();
-
-    document.querySelectorAll('.tulip').forEach(tulip => {
-      tulip.addEventListener('click', () => {
-        document.getElementById('tulipColor').innerText = `🌸 Tulip Color: ${tulip.dataset.color}`;
-        document.getElementById('tulipWord').innerText = `✨ Describes Her: ${tulip.dataset.word}`;
-        document.getElementById('tulipMessage').innerText = `💌 Message: ${tulip.dataset.message}`;
-        document.getElementById('tulipBox').classList.add('show');
-      });
+      tulipField.appendChild(div);
     });
 
     function closeTulipBox() {
