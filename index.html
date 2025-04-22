@@ -71,6 +71,7 @@
     @keyframes rainbow-border {
       to { background-position: 400% 0; }
     }
+    
 
     .star {
       position: absolute;
@@ -165,7 +166,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0);
-      background: #fff0f6;
+      background: #f80164;
       border: 2px solid #ff4081;
       border-radius: 20px;
       padding: 30px;
@@ -182,7 +183,7 @@
       margin-top: 20px;
       padding: 10px 20px;
       background-color: #ff4081;
-      color: white;
+      color: rgb(37, 204, 28);
       border: none;
       border-radius: 10px;
       cursor: pointer;
@@ -194,23 +195,23 @@
       margin-top: 50px;
       color: #6a1b9a;
     }
-    <style>
+  
   :root {
-    --bg-color: #fff;
-    --text-color: #222;
-    --card-bg: #f0eaff;
-    --primary-color: #ff4081;
-    --tulip-bg: #fff0f6;
-    --tulip-text: #000;
+    --bg-color: linear-gradient(to right, #fff1f9, #d9e7ff); /* soft blush + pastel blue */
+  --text-color: #3b3b3b; /* elegant deep gray for readability */
+  --card-bg: #fff0fb; /* very light blush pink for cards */
+  --primary-color: #f06292; /* vibrant pink for titles and buttons */
+  --tulip-bg: #ffffff; /* crisp white tulip box */
+  --tulip-text: #4a148c; /* deep violet text */
   }
 
   body.dark {
-    --bg-color: linear-gradient(to right, #141E30, #243B55);
-    --text-color: #fff;
-    --card-bg: #1e1a28;
-    --primary-color: #ff4081;
-    --tulip-bg: #fff0f6;
-    --tulip-text: #000;
+    --bg-color: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  --text-color: #f0f0f0;
+  --card-bg: #1a132d;
+  --primary-color: #ff82c8;
+  --tulip-bg: #2e1437;
+  --tulip-text: #fce4ec;
   }
 
   body {
@@ -259,7 +260,7 @@
   }
 
   /* Keep your other styles as they are */
-</style>
+
 
   </style>
 </head>
@@ -339,9 +340,7 @@ themeToggle.addEventListener('click', () => {
       { color: "Red", word: "aesthetic", message: "Maligayang kaarawan!!.", author: "- Sanket" },
       { color: "Pastel Peach", word: "Brave and Strong Lady", message: "Cheers to Another year! Wishing you all the best things in Life!! Your Birthday is a Reminder of how special and amazing you are.Have fun Enjoy and Celebrate!! Happy Happy Birthday Lady!!", author: "- Grace" },
       { color: "Pink", word: "Compassionate", message: "Happy Birthday to an amazing manager. Hope your birthday is as outstanding as your leadership. Wishing you a wonderful birthday and a year full of achievements. - Kurat pa more", author: "- Charles" },
-      { color: "Purple", word: "Confidient and Emphatic", message: "Happy Birthday to the Boss Lady! Wishing you the best of everything in life Cheers to the backbone of our Department", author: "- Anant" },
-
-
+      { color: "Purple", word: "Confidient and Emphatic", message: "Happy Birthday to the Boss Lady! Wishing you the best of everything in life Cheers to the backbone of our Department", author: "- Anant" }
     ];
 
     const tulipField = document.getElementById("tulipField");
