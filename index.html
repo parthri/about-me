@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
+    
     body {
       font-family: Arial, Helvetica, sans-serif, sans-serif;
       background: linear-gradient(135deg, #02AAB0,rgb(10, 8, 28));
@@ -15,6 +16,7 @@
       padding: 0;
       overflow-x: hidden;
     }
+    
     .floating-balloon {
   position: absolute;
   width: 60px;
@@ -52,7 +54,7 @@
 }
 
     .birthday-card {
-      background: #1e1a28;
+      background: #120e1c;
       border-radius: 20px;
       padding: 40px;
       margin: 40px auto;
@@ -192,11 +194,80 @@
       margin-top: 50px;
       color: #6a1b9a;
     }
-    
+    <style>
+  :root {
+    --bg-color: #fff;
+    --text-color: #222;
+    --card-bg: #f0eaff;
+    --primary-color: #ff4081;
+    --tulip-bg: #fff0f6;
+    --tulip-text: #000;
+  }
+
+  body.dark {
+    --bg-color: linear-gradient(to right, #141E30, #243B55);
+    --text-color: #fff;
+    --card-bg: #1e1a28;
+    --primary-color: #ff4081;
+    --tulip-bg: #fff0f6;
+    --tulip-text: #000;
+  }
+
+  body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .birthday-card {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px auto;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  .birthday-title {
+    color: var(--primary-color);
+  }
+
+  .name {
+    color: #b30df5;
+  }
+
+  .wish {
+    color: #b70d6e;
+  }
+
+  .tulip-box {
+    background: var(--tulip-bg);
+    color: var(--tulip-text);
+    transition: all 0.3s ease;
+  }
+
+  .tulip-box button {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  /* Keep your other styles as they are */
+</style>
+
   </style>
 </head>
 <body>
-
+  <button id="themeToggle" style="position: fixed; top: 20px; right: 20px; z-index: 999; background: none; border: none; font-size: 2rem; cursor: pointer;">
+    🌙
+  </button>
+  
   <div class="birthday-card">
     <div class="star top-left">⭐</div>
     <div class="star top-right">⭐</div>
@@ -230,6 +301,14 @@
     <button onclick="closeTulipBox()">Close</button>
   </div>
   <script>
+    const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark');
+  themeToggle.innerText = body.classList.contains('dark') ? '☀️' : '🌙';
+});
+
     const tulips = [
       { color: "Cheery", word: "Magical", message: "Every move you make is elegance. You're the sunshine in cloudy days🦋.", author: "- Parth" },
       { color: "Purple(Velvet)", word: "On-Fleek", message: "No Words can describe how crazy you are.Stay like that.", author: "- Christian" },
